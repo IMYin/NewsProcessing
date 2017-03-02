@@ -1,2 +1,2 @@
-### purpose
-processing news of web-site.
+## purpose
+processing the news of web-site.
