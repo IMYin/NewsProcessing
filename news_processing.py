@@ -42,6 +42,7 @@ def get_content(time_now, retry=3):
             if time_now != u"08:20":
                 for item in builder.articles:
                     for _ in range(retry):
+                        time.sleep(0.001)
                         article_title, article_text = get_article(item.url)
                         if len(article_text) != 0 and len(article_title) != 0:
                             break
@@ -73,7 +74,7 @@ def insert_to_mysql(lines, collect_time):
 # while True:
 current_time = (datetime.datetime.now()).strftime(u'%H:%M')
 if current_time != u"23:50":
-    contents = get_content(current_time)
+    contents = get_content(current_time, retry=5)
     if len(contents) > 0:
         insert_to_mysql(contents, current_time)
         # time.sleep(1800)
