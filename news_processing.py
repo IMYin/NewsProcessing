@@ -28,8 +28,6 @@ def get_article(url):
         pass
     article_title = article.title
     article_text = article.text
-    # if len(article_title) == 0:
-    #     article_title = article.meta_description
     return article_title, article_text
 
 
@@ -71,12 +69,8 @@ def insert_to_mysql(lines, collect_time):
         connection.close()
 
 
-# while True:
 current_time = (datetime.datetime.now()).strftime(u'%H:%M')
 if current_time != u"23:50":
-    contents = get_content(current_time, retry=5)
+    contents = get_content(current_time, retry=10)
     if len(contents) > 0:
         insert_to_mysql(contents, current_time)
-        # time.sleep(1800)
-        # else:
-        #     break
