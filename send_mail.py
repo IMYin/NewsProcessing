@@ -56,5 +56,5 @@ def run_send():
     s.sendmail(from_addr, to_addr, msg.as_string())
     s.quit()
 
-if current_time != u"23:20":
+if current_time != u"23:50":
     run_send()

@@ -28,8 +28,6 @@ def get_article(url):
         pass
     article_title = article.title
     article_text = article.text
-    if len(article_title) == 0:
-        article_title = article.meta_description
     return article_title, article_text
 
 
@@ -42,10 +40,12 @@ def get_content(time_now, retry=3):
             if time_now != u"08:20":
                 for item in builder.articles:
                     for _ in range(retry):
-                        time.sleep(0.001)
+                        time.sleep(0.01)
                         article_title, article_text = get_article(item.url)
-                        if len(article_text) != 0:
+                        if len(article_text) != 0 and len(article_title) != 0:
                             break
+                        elif len(article_text) != 0 and (_ == (retry - 1) and len(article_title) == 0):
+                            article_title = item.url
                     print(u"{} {} : {}-----{}".format(cons.today_str_Ymd, time_now, article_title, article_text))
                     contents[article_title] = article_text
                 print(u"There are {} news...".format(news_size))
