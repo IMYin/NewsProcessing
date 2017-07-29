@@ -1,4 +1,4 @@
-#!/home/imyin/python_env/newspaper_python3/bin python3
+#!/home/imyin/python_env/newspaper_python3/bin/python
 # -*- coding: utf-8 -*-
 
 """
